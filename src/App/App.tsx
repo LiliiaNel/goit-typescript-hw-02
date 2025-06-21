@@ -34,7 +34,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (query === "") {
+    if (query === ""|| isLoading) {
       return;
     }
     async function fetchData() {
@@ -42,8 +42,10 @@ function App() {
         setIsError(false);
         setIsloading(true);
         const data = await fetchImages(query, currentPage);
-      setImages((prevImages) => {
-        return [...prevImages, ...data.results];
+        setImages((prevImages) => {
+          const prevIds = prevImages.map(img => img.id);
+          const newImages = data.results.filter(img => !prevIds.includes(img.id));;
+        return [...prevImages, ...newImages];
       });
         setTotalPages(data.total_pages);
         const noResults = !data || data.total === 0 || data.results.length === 0;
@@ -56,14 +58,13 @@ function App() {
       } catch (error: unknown) {
         if (error instanceof Error) {
           setIsError(true);
-          
+
     }} finally {
       setIsloading(false);
-  }
-      
+  }    
     }
     fetchData();
-  }, [query, currentPage]);
+  }, [query, currentPage, isLoading]);
 
   
   const openModal = (image:FetchedImage) => {
