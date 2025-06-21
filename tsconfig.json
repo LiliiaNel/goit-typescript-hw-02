@@ -2,7 +2,7 @@
     "compilerOptions": {
       "target": "ESNext",
       "useDefineForClassFields": true,
-      "lib": ["DOM", "DOM.Iterable", "ESNext"],
+      "lib": ["DOM", "DOM.Iterable", "ES2015", "ESNext"],
       "allowJs": true,
       "skipLibCheck": true,
       "esModuleInterop": false,
@@ -10,7 +10,8 @@
       "strict": true,
       "forceConsistentCasingInFileNames": true,
       "module": "ESNext",
-      "moduleResolution": "Node",
+      "moduleResolution": "node",
+      "types": ["node"],
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noEmit": true,
