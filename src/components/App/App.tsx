@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { Toaster } from 'react-hot-toast';
 import ReactModal from 'react-modal';
-import { SearchBar } from '../components/search-bar/SearchBar';
-import Loader from '../components/loader/Loader';
-import { LoadMoreBtn } from '../components/load-more-btn/LoadMoreBtn';
-import { ImageGallery } from '../components/image-gallery/ImageGallery';
-import { ImageModal } from '../components/image-modal/ImageModal';
-import ErrorMessage from '../components/error-message/ErrorMessage';
-import { fetchImages } from '../gallery-api';
-import FetchedImage from '../types';
+import { SearchBar } from '../search-bar/SearchBar';
+import Loader from '../loader/Loader';
+import { LoadMoreBtn } from '../load-more-btn/LoadMoreBtn';
+import { ImageGallery } from '../image-gallery/ImageGallery';
+import { ImageModal } from '../image-modal/ImageModal';
+import ErrorMessage from '../error-message/ErrorMessage';
+import { fetchImages } from '../../gallery-api';
+import FetchedImage from '../../types';
 ReactModal.setAppElement('#root');
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (query === ""|| isLoading) {
+    if (query === "") {
       return;
     }
     async function fetchData() {
@@ -64,7 +64,7 @@ function App() {
   }    
     }
     fetchData();
-  }, [query, currentPage, isLoading]);
+  }, [query, currentPage]);
 
   
   const openModal = (image:FetchedImage) => {
