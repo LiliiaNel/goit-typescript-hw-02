@@ -12,7 +12,7 @@ interface ResponseData {
 }
 
 export const fetchImages = async (query: string, currentPage: number): Promise<ResponseData> => {
-    const response = await axios.get('search/photos', { params: {
+    const response = await axios.get <ResponseData>('search/photos', { params: {
     client_id: apiKey,
         query: query,
     page: currentPage,
